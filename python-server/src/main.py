@@ -4,11 +4,11 @@ app = FastAPI()
 
 tasks = []
 
-@app.post("/add_task")
+@app.post("/task")
 def add_task(task: str):
     tasks.append(task)
     return {"message": "Task added successfully"}
 
-@app.get("/get_tasks")
+@app.get("/tasks")
 def get_tasks():
     return {"tasks": tasks}
