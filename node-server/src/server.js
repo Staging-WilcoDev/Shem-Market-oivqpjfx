@@ -21,15 +21,15 @@ app.get("/", (req, res) => {
 });
 
 // POST endpoint to add a task
-// app.post("/tasks", (req, res) => {
-//   const { text } = req.body; // Assuming the body has a "text" field
-//   if (text) {
-//     tasks.push(text);
-//     res.json({ message: "Task added successfully" });
-//   } else {
-//     res.status(400).send("Task text is required");
-//   }
-// });
+app.post("/tasks", (req, res) => {
+  const { text } = req.body; // Assuming the body has a "text" field
+  if (text) {
+    tasks.push(text);
+    res.json({ message: "Task added successfully" });
+  } else {
+    res.status(400).send("Task text is required");
+  }
+});
 
 // GET endpoint to list all tasks
 app.get("/tasks", (req, res) => {
