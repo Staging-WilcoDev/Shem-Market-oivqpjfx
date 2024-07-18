@@ -1,39 +1,17 @@
-# Python Server
+# Welcome to the Anythink Market repo (powered by [Wilco](https://www.trywilco.com))
 
-This project contains a Node.js server implemented in JavaScript. It provides two routes for managing a task list.
+To start the app use Docker. It will start both frontend and backend, including all the relevant dependencies, and the db.
 
-## Project Structure
+Please find more info about each part in the relevant Readme file ([frontend](frontend/readme.md) and [backend](backend/README.md)).
 
-The project has the following files and directories:
+## Development
 
-- `node-server/src/main.js`: This file contains the implementation of the Node.js server with two routes. It handles adding a task to a list and retrieving the list.
+When implementing a new feature or fixing a bug, please create a new pull request against `main` from a feature/bug branch and add `@vanessa-cooper` as reviewer.
 
-- `node-server/src/index.js`: This file is an entry point for the Node.js server.
+## How to run in dev mode?
 
-- `node-server/package.json`: This file lists the dependencies required for the Node.js server and other project configurations.
+### Using Codespace
+1.  run `docker compose up`
 
-- `node-server/Dockerfile`: This file is used to build a Docker image for the Node.js server. It specifies the base image, copies the source code into the image, installs the dependencies, and sets the command to run the server.
-
-- `docker-compose.yml`: This file is used to define and run multi-container Docker applications. It specifies the services to run, their configurations, and any dependencies between them.
-
-## Getting Started
-
-To run the Node.js server using Docker, follow these steps:
-
-- Build and start the Docker containers by running the following command:
-
-  ```shell
-  docker compose up
-  ```
-
-  This command will build the Docker image for the Node.js server and start the containers defined in the `docker-compose.yml` file.
-
-- The Node.js server should now be running. You can access it at port `8001`.
-
-## API Routes
-
-The Node.js server provides the following API routes:
-
-- `POST /tasks`: Adds a task to the task list. The request body should contain the task details.
-
-- `GET /tasks`: Retrieves the task list.
+## Tests
+Documentation about running the End to End test can be found under the `/tests` directory
