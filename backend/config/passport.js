@@ -18,7 +18,7 @@ passport.use(
           });
         }
 
-        return done(null, user);
+        return await done(null, user);
       } catch (e) {
         done(e);
       }
