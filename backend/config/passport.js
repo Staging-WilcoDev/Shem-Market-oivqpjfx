@@ -3,6 +3,20 @@ var LocalStrategy = require("passport-local").Strategy;
 var mongoose = require("mongoose");
 var User = mongoose.model("User");
 
+function handleLogin(email, password) {
+  return new Promise((resolve, reject) => {
+    User.findOne({ email: email })
+      .then(function (user) {
+        if (!user || !user.validPassword(password)) {
+          return reject({ errors: { "email or password": "is invalid" } });
+        }
+
+        return resolve(user);
+      })
+      .catch(reject);
+  });
+}
+
 passport.use(
   new LocalStrategy(
     {
@@ -10,18 +24,13 @@ passport.use(
       passwordField: "user[password]",
     },
     async function (email, password, done) {
-      try {
-        const user = await User.findOne({ email: email });
-        if (!user || !user.validPassword(password)) {
-          return done(null, false, {
-            errors: { "email or password": "is invalid" },
-          });
-        }
-
-        return await done(null, user);
-      } catch (e) {
-        done(e);
-      }
+      handleLogin(email, password)
+        .then((user) => {
+          done(null, user);
+        })
+        .catch((error) => {
+          done(null, false, error);
+        });
     }
   )
 );
