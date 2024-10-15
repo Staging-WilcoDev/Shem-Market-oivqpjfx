@@ -15,11 +15,20 @@ function handleLogin(username, password) {
   });
 }
 
-// Call the function
-handleLogin("exampleUser", "examplePassword")
-  .then((user) => {
-    console.log("User found:", user);
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "user[email]",
+      passwordField: "user[password]",
+    },
+    function (email, password, done) {
+      handleLogin(email, password)
+        .then((user) => {
+          done(null, user);
+        })
+        .catch((error) => {
+          done(null, false, error);
+        });
+    }
+  )
+);
