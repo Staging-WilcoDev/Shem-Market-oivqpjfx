@@ -22,6 +22,8 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 gcloud iam service-accounts keys create $KEY_FILE_PATH \
   --iam-account "${SERVICE_ACCOUNT_NAME}@${PROJECT_ID}.iam.gserviceaccount.com"
 
+gcloud services enable dataflow.googleapis.com
+
 credentials="`cat $KEY_FILE_PATH`"
 stringified_credentials="$(echo "$credentials" | jq -R -s .)"
 
