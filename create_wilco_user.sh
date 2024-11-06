@@ -31,7 +31,7 @@ export ENGINE_EVENT_ENDPOINT="${ENGINE_BASE_URL}/users/${WILCO_ID}/event"
 
 # Update engine with service account credentials
 
-curl -L -X POST "${ENGINE_EVENT_ENDPOINT}" -H "Content-Type: application/json" --data-raw "{ \"event\": \"gcp_service_account_created\", \"metadata\": {\"credentials\": $stringified_credentials, \"project_id\": $PROJECT_ID }}"
+curl -L -X POST "${ENGINE_EVENT_ENDPOINT}" -H "Content-Type: application/json" --data-raw "{ \"event\": \"gcp_service_account_created\", \"metadata\": {\"credentials\": $stringified_credentials }}"
 
 export GOOGLE_APPLICATION_CREDENTIALS=$KEY_FILE_PATH
 
